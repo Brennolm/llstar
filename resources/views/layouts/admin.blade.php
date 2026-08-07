@@ -60,10 +60,13 @@
                             <h2 class="page-title">@yield('title', 'Dashboard')</h2>
                         </div>
                         <div class="col-auto ms-auto d-print-none">
-                            <form method="POST" action="{{ route('logout') }}">
-                                @csrf
-                                <button type="submit" class="btn btn-outline-danger">Sair</button>
-                            </form>
+                            <div class="d-flex gap-2">
+                                <a href="{{ route('profile.edit') }}" class="btn btn-outline-secondary">Perfil</a>
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+                                    <button type="submit" class="btn btn-outline-danger">Sair</button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
