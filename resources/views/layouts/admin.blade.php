@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>@yield('title', 'Painel') - LLStar</title>
+    @vite(['resources/css/admin.css', 'resources/js/admin.js'])
+</head>
+<body>
+    <div class="page">
+        <aside class="navbar navbar-vertical navbar-expand-lg navbar-dark" data-bs-theme="dark">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#sidebar-menu">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <h1 class="navbar-brand navbar-brand-autodark">
+                    <a href="{{ route('dashboard') }}">LLStar</a>
+                </h1>
+                <div class="collapse navbar-collapse" id="sidebar-menu">
+                    <ul class="navbar-nav pt-lg-3">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('dashboard') }}">
+                                <span class="nav-link-title">Dashboard</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </aside>
+
+        <div class="page-wrapper">
+            <div class="page-header d-print-none">
+                <div class="container-xl">
+                    <div class="row g-2 align-items-center">
+                        <div class="col">
+                            <h2 class="page-title">@yield('title', 'Dashboard')</h2>
+                        </div>
+                        <div class="col-auto ms-auto d-print-none">
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <button type="submit" class="btn btn-outline-danger">Sair</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="page-body">
+                <div class="container-xl">
+                    @yield('content')
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
