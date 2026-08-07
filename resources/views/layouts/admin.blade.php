@@ -19,11 +19,34 @@
                 </h1>
                 <div class="collapse navbar-collapse" id="sidebar-menu">
                     <ul class="navbar-nav pt-lg-3">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('dashboard') }}">
-                                <span class="nav-link-title">Dashboard</span>
-                            </a>
-                        </li>
+                        @foreach($menu as $item)
+                            @if(isset($item['children']))
+                                @php $childActive = collect($item['children'])->contains(fn($child) => isset($child['route']) && request()->routeIs($child['route'])); @endphp
+                                <li class="nav-item dropdown {{ $childActive ? 'active' : '' }}">
+                                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" data-bs-auto-close="false" role="button" aria-expanded="false">
+                                        <span class="nav-link-title">{{ $item['label'] }}</span>
+                                    </a>
+                                    <div class="dropdown-menu {{ $childActive ? 'show' : '' }}">
+                                        <div class="dropdown-menu-columns">
+                                            <div class="dropdown-menu-column">
+                                                @foreach($item['children'] as $child)
+                                                    <a class="dropdown-item {{ isset($child['route']) && request()->routeIs($child['route']) ? 'active' : '' }}"
+                                                       href="{{ isset($child['route']) && Route::has($child['route']) ? route($child['route']) : '#' }}">
+                                                        {{ $child['label'] }}
+                                                    </a>
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            @else
+                                <li class="nav-item {{ request()->routeIs($item['route']) ? 'active' : '' }}">
+                                    <a class="nav-link" href="{{ route($item['route']) }}">
+                                        <span class="nav-link-title">{{ $item['label'] }}</span>
+                                    </a>
+                                </li>
+                            @endif
+                        @endforeach
                     </ul>
                 </div>
             </div>
