@@ -91,23 +91,24 @@
                     <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1" data-aos="fade-right">
                         <h3>Oferecemos um planejamento logístico adequado para cada necessidade.</h3>
                         <p class="fst-italic">
-                            A Política da Qualidade da LL Star está estruturada de forma a atender às estratégias
-                            necessárias para a empresa e tem os seguintes compromissos:
+                            A Política da Qualidade da LL Star está estruturada para atender às necessidades da empresa
+                            e se apoia em três compromissos:
                         </p>
                         <ul>
-                            <li><i class="ti ti-circle-check"></i> Com a melhoria contínua do Sistema de Gestão da Qualidade (SGQ).</li>
-                            <li><i class="ti ti-circle-check"></i> De atender às necessidades e requisitos dos clientes e das partes interessadas.</li>
-                            <li><i class="ti ti-circle-check"></i> De ser estruturada de forma a orientar a definição de gestão dos objetivos da qualidade.</li>
+                            <li><i class="ti ti-circle-check"></i> Buscamos a melhoria contínua do nosso Sistema de Gestão da Qualidade (SGQ).</li>
+                            <li><i class="ti ti-circle-check"></i> Atendemos às necessidades e aos requisitos dos nossos clientes e demais partes interessadas.</li>
+                            <li><i class="ti ti-circle-check"></i> Orientamos nossa gestão pela definição clara de objetivos de qualidade.</li>
                         </ul>
                         <p>
-                            Hoje a LL Star, especializada em transportes executivo de passageiros, atende a uma área
-                            altamente competitiva e exigente. Desta forma nossa frota conta com veículos modernos,
-                            confortáveis e seguros. Nossos colaboradores, sempre atenciosos, estão em aprimoramento
-                            constante e se dedicam ao máximo para um atendimento de qualidade.
+                            Hoje a LL Star, especializada em transporte executivo de passageiros, atende a uma área
+                            altamente competitiva e exigente. Nossa frota conta com veículos modernos, confortáveis e
+                            seguros, conduzidos por motoristas experientes e preparados para cada rota. Nossos
+                            colaboradores, sempre atenciosos, estão em aprimoramento constante e se dedicam ao máximo
+                            para um atendimento de qualidade.
                         </p>
                         <p>
-                            A Empresa tem como foco os transportes Off Shore com Locação de veículos com Motoristas,
-                            Logística de Pessoal e todo o suporte necessário para uma troca de turmas com sucesso.
+                            A empresa tem como foco o transporte Off Shore, com locação de veículos com motoristas,
+                            logística de pessoal e todo o suporte necessário para uma troca de turma bem-sucedida.
                         </p>
                     </div>
                 </div>
@@ -120,19 +121,23 @@
                     <div class="col-lg-4" data-aos="fade-up">
                         <div class="box">
                             <h4>Missão</h4>
-                            <p>Fornecer soluções relacionados à serviços de transporte de pessoal, material e equipamentos.</p>
+                            <p>Garantir que cada troca de turma e cada deslocamento executivo aconteçam no horário certo, com segurança e conforto, para que nossos clientes foquem no que realmente importa.</p>
                         </div>
                     </div>
                     <div class="col-lg-4 mt-4 mt-lg-0" data-aos="fade-up" data-aos-delay="150">
                         <div class="box">
                             <h4>Visão</h4>
-                            <p>Ser reconhecida pela qualidade e segurança de seus serviços.</p>
+                            <p>Ser a referência em transporte executivo e logística de pessoal para o setor offshore no Rio de Janeiro.</p>
                         </div>
                     </div>
                     <div class="col-lg-4 mt-4 mt-lg-0" data-aos="fade-up" data-aos-delay="300">
                         <div class="box">
                             <h4>Valores</h4>
-                            <p>Qualidade, Segurança, Confiabilidade, Compromisso, Honestidade, Respeito e Dedicação</p>
+                            <p>
+                                <strong>Pontualidade</strong> — uma troca de turma atrasada não é opção.<br>
+                                <strong>Segurança</strong> — motoristas experientes e preparados para cada rota.<br>
+                                <strong>Proximidade</strong> — atendimento próximo e humano, não uma frota terceirizada qualquer.
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -143,10 +148,19 @@
             <div class="container" data-aos="zoom-in">
                 <div class="clients-slider swiper">
                     <div class="swiper-wrapper align-items-center">
-                        <!-- TODO: trocar pelos logos reais dos clientes -->
-                        @foreach (['Constellation', 'Drake', 'Enauta', 'Faurgs', 'Gestor', 'Presserv', 'Qualyta', 'Sapiensia', 'Transit'] as $client)
+                        @foreach ([
+                            ['name' => 'Constellation', 'file' => 'constellation.png'],
+                            ['name' => 'Drake', 'file' => 'drake.png'],
+                            ['name' => 'Enauta', 'file' => 'enauta.png'],
+                            ['name' => 'Faurgs', 'file' => 'faurgs.png'],
+                            ['name' => 'Gestor', 'file' => 'gestor.png'],
+                            ['name' => 'Presserv', 'file' => 'presserv.jpg'],
+                            ['name' => 'Qualyta', 'file' => 'qualyta.png'],
+                            ['name' => 'Sapiensia', 'file' => 'sapiensia.png'],
+                            ['name' => 'Transit', 'file' => 'transit.png'],
+                        ] as $client)
                             <div class="swiper-slide text-center">
-                                <img src="https://placehold.co/160x80?text={{ urlencode($client) }}" class="img-fluid" alt="{{ $client }}">
+                                <img src="{{ asset('assets/img/clients/' . $client['file']) }}" class="img-fluid" alt="{{ $client['name'] }}">
                             </div>
                         @endforeach
                     </div>
@@ -161,13 +175,18 @@
                     <h2>Portfólio</h2>
                 </div>
                 <div class="row" data-aos="fade-up">
-                    <!-- TODO: trocar pelas fotos reais da frota -->
-                    <div class="col-lg-4 col-md-6 portfolio-item">
-                        <img src="https://placehold.co/600x400?text=Frota+LL+Star" class="img-fluid" alt="">
-                    </div>
-                    <div class="col-lg-4 col-md-6 portfolio-item">
-                        <img src="https://placehold.co/600x400?text=Frota+LL+Star" class="img-fluid" alt="">
-                    </div>
+                    @foreach ([
+                        ['file' => 'frota.png', 'alt' => 'Frota LL Star'],
+                        ['file' => 'corola.png', 'alt' => 'Toyota Corolla'],
+                        ['file' => 'interno_corola.png', 'alt' => 'Interior - Corolla'],
+                        ['file' => 'renegade.png', 'alt' => 'Jeep Renegade'],
+                        ['file' => 'interno_renegade.png', 'alt' => 'Interior - Renegade'],
+                        ['file' => 'onix.png', 'alt' => 'Chevrolet Onix'],
+                    ] as $item)
+                        <div class="col-lg-4 col-md-6 portfolio-item">
+                            <img src="{{ asset('assets/img/portfolio/' . $item['file']) }}" class="img-fluid" alt="{{ $item['alt'] }}">
+                        </div>
+                    @endforeach
                 </div>
             </div>
         </section>
