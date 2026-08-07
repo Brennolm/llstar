@@ -85,8 +85,7 @@
                 </div>
                 <div class="row align-items-center">
                     <div class="col-lg-6 order-1 order-lg-2" data-aos="fade-left">
-                        <!-- TODO: trocar por asset('assets/img/about.png') quando tiver a imagem real -->
-                        <img src="https://placehold.co/700x500?text=LL+Star" class="img-fluid" alt="LL Star">
+                        <img src="{{ asset('assets/img/about.png') }}" class="img-fluid" alt="LL Star">
                     </div>
                     <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1" data-aos="fade-right">
                         <h3>Oferecemos um planejamento logístico adequado para cada necessidade.</h3>
@@ -225,13 +224,34 @@
                         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1837.8230808832207!2d-42.47742160693503!3d-22.8895258727183!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9760aa022086f7%3A0xd1b7bd90a4e08cac!2sR.%20Theodomiro%20Amorim%20-%20S%C3%A3o%20Geraldo%20(Bacax%C3%A1)%2C%20Saquarema%20-%20RJ%2C%2028995-205!5e0!3m2!1spt-BR!2sbr!4v1694096585570!5m2!1spt-BR!2sbr" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
                     <div class="col-lg-5">
-                        <!-- Formulário visual por enquanto, sem envio real -->
-                        <form class="contact-form info-box">
+                        <form class="contact-form info-box" method="POST" action="{{ route('contact.submit') }}">
+                            @csrf
                             <h3 class="mb-3">Formulário de Contato</h3>
-                            <input type="text" name="name" class="form-control" placeholder="Nome" required>
-                            <input type="email" name="email" class="form-control" placeholder="E-mail" required>
-                            <input type="text" name="subject" class="form-control" placeholder="Assunto" required>
-                            <textarea name="message" class="form-control" rows="4" placeholder="Mensagem" required></textarea>
+        
+                            @if (session('contact_status'))
+                                <div class="alert alert-success">{{ session('contact_status') }}</div>
+                            @endif
+        
+                            <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" placeholder="Nome" value="{{ old('name') }}" required>
+                            @error('name')
+                                <div class="invalid-feedback d-block">{{ $message }}</div>
+                            @enderror
+        
+                            <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" placeholder="E-mail" value="{{ old('email') }}" required>
+                            @error('email')
+                                <div class="invalid-feedback d-block">{{ $message }}</div>
+                            @enderror
+        
+                            <input type="text" name="subject" class="form-control @error('subject') is-invalid @enderror" placeholder="Assunto" value="{{ old('subject') }}" required>
+                            @error('subject')
+                                <div class="invalid-feedback d-block">{{ $message }}</div>
+                            @enderror
+        
+                            <textarea name="message" class="form-control @error('message') is-invalid @enderror" rows="4" placeholder="Mensagem" required>{{ old('message') }}</textarea>
+                            @error('message')
+                                <div class="invalid-feedback d-block">{{ $message }}</div>
+                            @enderror
+        
                             <button type="submit" class="btn btn-dark w-100 mt-2">Enviar Mensagem</button>
                         </form>
                     </div>
@@ -273,11 +293,17 @@
                     <div class="col-lg-4 col-md-6 footer-newsletter">
                         <h4>Receba nossas novidades e fique por dentro das notícias</h4>
                         <p>Se inscreva no nosso boletim informativo</p>
-                        <!-- Formulário visual por enquanto, sem envio real -->
-                        <form>
-                            <input type="email" name="email" placeholder="Digite seu E-mail" required>
+                        <form method="POST" action="{{ route('newsletter.store') }}">
+                            @csrf
+                            <input type="email" name="newsletter_email" placeholder="Digite seu E-mail" value="{{ old('newsletter_email') }}" required>
                             <input type="submit" value="Inscrever-se">
                         </form>
+                        @if (session('newsletter_status'))
+                            <p class="text-white mt-2 mb-0">{{ session('newsletter_status') }}</p>
+                        @endif
+                        @error('newsletter_email')
+                            <p class="text-danger mt-2 mb-0">{{ $message }}</p>
+                        @enderror
                     </div>
                 </div>
             </div>
